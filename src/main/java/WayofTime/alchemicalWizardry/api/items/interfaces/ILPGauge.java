@@ -4,5 +4,5 @@ import net.minecraft.item.ItemStack;
 
 public interface ILPGauge 
 {
-	boolean canSeeLPBar(ItemStack itemStack);
+	public boolean canSeeLPBar(ItemStack itemStack);
 }

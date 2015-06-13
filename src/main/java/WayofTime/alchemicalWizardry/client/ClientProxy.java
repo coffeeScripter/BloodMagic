@@ -1,6 +1,5 @@
 package WayofTime.alchemicalWizardry.client;
 
-import WayofTime.alchemicalWizardry.common.thread.GAPIChecker;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.world.World;
 import net.minecraftforge.client.MinecraftForgeClient;
@@ -195,6 +194,5 @@ public class ClientProxy extends CommonProxy
         MinecraftForge.EVENT_BUS.register(ob);
         KeyBindings.init();
         MinecraftForge.EVENT_BUS.register(new ScrollHelper());
-        new GAPIChecker().init();
     }
 }

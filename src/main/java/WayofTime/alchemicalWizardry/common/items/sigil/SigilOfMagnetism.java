@@ -6,7 +6,6 @@ import WayofTime.alchemicalWizardry.api.items.interfaces.ISigil;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -154,7 +153,6 @@ public class SigilOfMagnetism extends EnergyItems implements ArmourUpgrade, IHol
             float posY = (float) (par3Entity.posY - par3Entity.getEyeHeight());
             float posZ = Math.round(par3Entity.posZ);
             List<EntityItem> entities = par3EntityPlayer.worldObj.getEntitiesWithinAABB(EntityItem.class, AxisAlignedBB.getBoundingBox(posX - 0.5f, posY - 0.5f, posZ - 0.5f, posX + 0.5f, posY + 0.5f, posZ + 0.5f).expand(range, verticalRange, range));
-            List<EntityXPOrb> xpOrbs = par3EntityPlayer.worldObj.getEntitiesWithinAABB(EntityXPOrb.class, AxisAlignedBB.getBoundingBox(posX - 0.5f, posY - 0.5f, posZ - 0.5f, posX + 0.5f, posY + 0.5f, posZ + 0.5f).expand(range, verticalRange, range));
 
             for (EntityItem entity : entities)
             {
@@ -163,15 +161,9 @@ public class SigilOfMagnetism extends EnergyItems implements ArmourUpgrade, IHol
                     entity.onCollideWithPlayer(par3EntityPlayer);
                 }
             }
-
-            for (EntityXPOrb xpOrb : xpOrbs)
-            {
-                if (xpOrb != null && !par2World.isRemote)
-                {
-                    xpOrb.onCollideWithPlayer(par3EntityPlayer);
-                }
-            }
         }
+
+        return;
     }
 
     @Override
@@ -183,21 +175,12 @@ public class SigilOfMagnetism extends EnergyItems implements ArmourUpgrade, IHol
         float posY = (float) (player.posY - player.getEyeHeight());
         float posZ = Math.round(player.posZ);
         List<EntityItem> entities = player.worldObj.getEntitiesWithinAABB(EntityItem.class, AxisAlignedBB.getBoundingBox(posX - 0.5f, posY - 0.5f, posZ - 0.5f, posX + 0.5f, posY + 0.5f, posZ + 0.5f).expand(range, verticalRange, range));
-        List<EntityXPOrb> xpOrbs = player.worldObj.getEntitiesWithinAABB(EntityXPOrb.class, AxisAlignedBB.getBoundingBox(posX - 0.5f, posY - 0.5f, posZ - 0.5f, posX + 0.5f, posY + 0.5f, posZ + 0.5f).expand(range, verticalRange, range));
 
         for (EntityItem entity : entities)
         {
             if (entity != null && !world.isRemote)
             {
                 entity.onCollideWithPlayer(player);
-            }
-        }
-
-        for (EntityXPOrb xpOrb : xpOrbs)
-        {
-            if (xpOrb != null && !world.isRemote)
-            {
-                xpOrb.onCollideWithPlayer(player);
             }
         }
     }
